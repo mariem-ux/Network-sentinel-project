@@ -56,14 +56,15 @@ pipeline.
 
 ## Repository Structure
 
+```text
 network-sentinel-project/
-├── report/ → Full written project report (PDF)
-├── images/ → Screenshots and network architecture diagram
-├── commands/ → Documented commands used in each sprint
-├── scripts/ → Bonus Python/Bash automation scripts
-├── suricata-rules/ → Custom Suricata IDS/IPS detection rules
-└── docker/ → Containerized demo environment (attacker, target, Suricata)
-
+├── report/ -> Full written project report (PDF)
+├── images/ -> Screenshots and network architecture diagram
+├── commands/ -> Documented commands used in each sprint
+├── scripts/ -> Bonus Python/Bash automation scripts
+├── suricata-rules/ -> Custom Suricata IDS/IPS detection rules
+└── docker/ -> Containerized demo environment (attacker, target, Suricata)
+```
 
 ---
 
