@@ -1,0 +1,71 @@
+version: "3.8"
+
+services:
+  # DMZ Web Server (Target)
+  ubuntu-dmz:
+    build: ./ubuntu-dmz
+    container_name: ubuntu-dmz
+    hostname: ubuntu-dmz
+    networks:
+      dmz_network:
+        ipv4_address: 10.0.2.10
+    ports:
+      - "80:80"
+    restart: unless-stopped
+
+  # WAN Attacker (Kali) — connected to WAN, and also to DMZ to simulate reaching the exposed server
+  kali-attacker:
+    build: ./kali-attacker
+    container_name: kali-attacker
+    hostname: kali-attacker
+    networks:
+      wan_network:
+        ipv4_address: 192.168.1.156
+      dmz_network:
+        ipv4_address: 10.0.2.30
+    stdin_open: true
+    tty: true
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+
+  # IDS/IPS (Suricata) attached directly to the DMZ network to inspect incoming attacks
+  suricata:
+    build: ./suricata
+    container_name: suricata-ids
+    network_mode: "service:ubuntu-dmz"
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+      - SYS_NICE
+    command: -i eth0 -S /var/lib/suricata/rules/custom.rules
+    depends_on:
+      - ubuntu-dmz
+  # LAN Internal Workstation (kept isolated — for documentation of segmentation concept only)
+  lan-host:
+    image: alpine:latest
+    container_name: lan-host
+    command: tail -f /dev/null
+    networks:
+      lan_network:
+        ipv4_address: 192.168.2.10
+
+networks:
+  wan_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24
+          gateway: 192.168.1.1
+  lan_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.2.0/24
+          gateway: 192.168.2.1
+  dmz_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
+          gateway: 10.0.2.1
