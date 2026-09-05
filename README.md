@@ -56,8 +56,6 @@ pipeline.
 
 ## Repository Structure
 
-## Repository Structure
-
 ```text
 network-sentinel-project/
 ├── commands/       -> Documented commands used in each sprint
@@ -79,6 +77,20 @@ network-sentinel-project/
 | `VPN_Log_Parser.py` | Monitors WireGuard peer handshakes in real time |
 | `PCAP_Analyzer.py` | Parses `.pcap` files and extracts top talking IP addresses |
 | `SIEM_Listener.py` | Receives Suricata Syslog alerts and displays them in real time |
+
+---
+
+## Note on the Docker Demo
+
+This containerized environment focuses on **detection (IDS mode)**: the attacker
+container generates real traffic, and Suricata inspects it live and logs custom
+alerts when malicious patterns are detected , fully reproducible with one command.
+
+**Full prevention (IPS) mode**, where Suricata actively drops malicious packets in
+real time, was implemented and validated in the original VM-based lab using
+OPNsense + inline Suricata (see `report/` and Sprint 4 screenshots in `images/`).
+Replicating full inline IPS across Docker's container networking was intentionally
+out of scope for this demo to keep it lightweight and reliable.
 
 ---
 
