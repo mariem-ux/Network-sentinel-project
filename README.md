@@ -108,7 +108,7 @@ out of scope for this demo to keep it lightweight and reliable.
 
 ## Limitations & Future Improvements
 
-See [`docs/limitations&improvements`](docs/limitations&improvements) for a full breakdown of current
+See [`docs/limitations&improvements.md`](docs/limitations&improvements.md) for a full breakdown of current
 limitations and planned improvements, including expanded attack coverage, high
 availability firewall testing, and integration with a real SIEM platform.
 
