@@ -1,4 +1,4 @@
-# Network Sentinel – Cybersecurity Internship Project
+# Network Sentinel : Cybersecurity Internship Project
 
 A fully functional network security lab built from scratch: from network segmentation
 and firewall rules, to launching real attacks, analyzing them at the packet level, and
