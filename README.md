@@ -62,7 +62,7 @@ network-sentinel-project/
 ├── docker/         -> Containerized demo environment (attacker, target, Suricata)
 ├── docs/           -> Project documentation (Limitations & Future Improvements)
 ├── images/         -> Screenshots and network architecture diagram
-├── report/         -> Full written project report (PDF)
+├── report/         -> Project report (PDF)
 ├── scripts/        -> Bonus Python/Bash automation scripts
 └── suricata-rules/ -> Custom Suricata IDS/IPS detection rules
 ```
